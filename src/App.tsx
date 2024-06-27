@@ -2,20 +2,13 @@ import './App.css'
 import Toolbar from "./components/Toolbar/Toolbar";
 import Home from "./containers/Home/Home";
 import {useState} from "react";
-import {GetPost} from './types';
+import { Post } from './types';
 import {Route, Routes} from "react-router-dom";
 import ShowChoiceDeleteOrEdit from "./containers/ShowChoiceDeleteOrEdit/ShowChoiceDeleteOrEdit";
 import NewPost from "./components/Newpost/NewPost";
 
 const App =() => {
-    const [posts, setPosts] = useState<GetPost[]>([
-        {
-            id: '1',
-            datetime: '2024-06-27',
-            title: 'Hello World',
-            description: 'description hello world'
-        }
-    ]);
+    const [posts, setPosts] = useState<Post[]>([]);
 
     const removePost = (id: string) => {
         setPosts((prevPosts) => {
@@ -32,16 +25,18 @@ const App =() => {
               <Routes>
                     <Route
                         path="/"
-                        element={<Home  Posts={posts}/>}
+                        element={<Home/>}
                     />
+                  <Route path="/new-post"  element={<NewPost />} />
+
                   {posts.map(post => (
                       <Route
                           key={post.id}
-                          path={`/posts/`+ post.id}
-                          element={<ShowChoiceDeleteOrEdit Posts={posts}  onRemovePost={() => removePost(post.id)} />}
+                          path="/posts/:id"
+                          element={<ShowChoiceDeleteOrEdit Posts={[post]} onRemovePost={() => removePost(post.id)} />}
                       />
                   ))}
-                  <Route path="/new-post"  element={<NewPost />} />
+
                   <Route path="*" element={<h1>Not found!</h1>}/>
               </Routes>
           </main>

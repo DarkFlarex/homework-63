@@ -1,19 +1,10 @@
-import React from 'react';
+import GetPostsItem from '../../components/GetPosts/GetPostsItem';
 
-import {GetPost} from "../../types";
-import GetPosts from "../../components/GetPosts/GetPosts";
-
-interface  Props{
-    Posts:GetPost[];
-}
-
-const Home:React.FC <Props> = ({Posts}) => {
+const Home = () => {
     return (
-        <>
-            <div className="col-12">
-                <GetPosts Posts={Posts}/>
-            </div>
-        </>
+        <div className="col-12">
+            <GetPostsItem />
+        </div>
     );
 };
 

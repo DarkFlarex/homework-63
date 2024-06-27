@@ -1,8 +1,15 @@
-export interface GetPost{
-    id:string;
+export interface ApiPost{
     datetime:string;
     title:string;
     description:string;
+}
+
+export interface ApiPosts{
+    [id:string]: ApiPost;
+}
+
+export interface Post extends ApiPost{
+    id:string;
 }
 
 export interface PostMutation{
@@ -10,3 +17,4 @@ export interface PostMutation{
     title:string;
     description:string;
 }
+

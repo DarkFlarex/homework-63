@@ -1,16 +1,16 @@
-import { GetPost } from '../../types';
 import React from 'react';
-import ShowChoiceDeleteOrEditItem from "./ShowChoiceDeleteOrEditItem";
+import ShowChoiceDeleteOrEditItem from './ShowChoiceDeleteOrEditItem';
+import { Post } from '../../types';
 
 interface Props {
-    Posts: GetPost[];
+    Posts: Post[];
     onRemovePost: React.MouseEventHandler;
 }
 
 const ShowChoiceDeleteOrEdit: React.FC<Props> = ({ Posts, onRemovePost }) => {
     return (
         <>
-            {Posts.map(post => (
+            {Posts.map((post) => (
                 <ShowChoiceDeleteOrEditItem key={post.id} Post={post} onRemovePost={onRemovePost} />
             ))}
         </>

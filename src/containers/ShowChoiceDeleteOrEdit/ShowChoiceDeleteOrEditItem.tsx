@@ -1,9 +1,9 @@
 import {Link} from "react-router-dom";
-import {GetPost} from "../../types";
+import {Post} from "../../types";
 import React from "react";
 
 interface Props{
-    Post:GetPost;
+    Post:Post;
     onRemovePost: React.MouseEventHandler;
 }
 
@@ -15,7 +15,7 @@ const ShowChoiceDeleteOrEditItem:React.FC<Props> = ({Post,onRemovePost}) => {
             <h3>{Post.title}</h3>
             <span className="mb-2">{Post.description}</span>
             <button onClick={onRemovePost} className="btn btn-danger mb-2 w-25">Delete</button>
-            <Link to='/edit' className="btn btn-primary w-25">Edit</Link>
+            <Link to={`/edit/${Post.id}`} className="btn btn-primary w-25">Edit</Link>
         </div>
     );
 };
