@@ -5,6 +5,7 @@ import {useState} from "react";
 import {GetPost} from './types';
 import {Route, Routes} from "react-router-dom";
 import ShowChoiceDeleteOrEdit from "./containers/ShowChoiceDeleteOrEdit/ShowChoiceDeleteOrEdit";
+import NewPost from "./components/Newpost/NewPost";
 
 const App =() => {
     const [posts, setPosts] = useState<GetPost[]>([
@@ -15,6 +16,7 @@ const App =() => {
             description: 'description hello world'
         }
     ]);
+
     const removePost = (id: string) => {
         setPosts((prevPosts) => {
             return prevPosts.filter((post) => post.id !== id);
@@ -39,6 +41,8 @@ const App =() => {
                           element={<ShowChoiceDeleteOrEdit Posts={posts}  onRemovePost={() => removePost(post.id)} />}
                       />
                   ))}
+                  <Route path="/new-post"  element={<NewPost />} />
+                  <Route path="*" element={<h1>Not found!</h1>}/>
               </Routes>
           </main>
       </>
