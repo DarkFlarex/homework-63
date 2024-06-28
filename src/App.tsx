@@ -1,47 +1,27 @@
-import './App.css'
+import './App.css';
 import Toolbar from "./components/Toolbar/Toolbar";
 import Home from "./containers/Home/Home";
-import {useState} from "react";
-import { Post } from './types';
-import {Route, Routes} from "react-router-dom";
-import ShowChoiceDeleteOrEdit from "./containers/ShowChoiceDeleteOrEdit/ShowChoiceDeleteOrEdit";
+import { Route, Routes } from "react-router-dom";
 import NewPost from "./components/Newpost/NewPost";
+import ShowChoicePostsItem from "./containers/ShowChoosePosts/ShowChoicePostsItem";
 
-const App =() => {
-    const [posts, setPosts] = useState<Post[]>([]);
-
-    const removePost = (id: string) => {
-        setPosts((prevPosts) => {
-            return prevPosts.filter((post) => post.id !== id);
-        });
-    };
+const App = () => {
     return (
-      <>
-        <header>
-          <Toolbar/>
-        </header>
+        <>
+            <header>
+                <Toolbar />
+            </header>
+            <main>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/new-post" element={<NewPost />} />
+                    <Route path="/posts/:id" element={<ShowChoicePostsItem />} />
+                    <Route path="/posts/:id/edit" element={<NewPost />} />
+                    <Route path="*" element={<h1>Not found!</h1>} />
+                </Routes>
+            </main>
+        </>
+    );
+};
 
-          <main>
-              <Routes>
-                    <Route
-                        path="/"
-                        element={<Home/>}
-                    />
-                  <Route path="/new-post"  element={<NewPost />} />
-
-                  {posts.map(post => (
-                      <Route
-                          key={post.id}
-                          path="/posts/:id"
-                          element={<ShowChoiceDeleteOrEdit Posts={[post]} onRemovePost={() => removePost(post.id)} />}
-                      />
-                  ))}
-
-                  <Route path="*" element={<h1>Not found!</h1>}/>
-              </Routes>
-          </main>
-      </>
-  )
-}
-
-export default App
+export default App;
