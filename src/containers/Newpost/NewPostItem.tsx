@@ -73,29 +73,36 @@ const NewPostItem = () => {
 
     return (
         <>
-            <h1>{id ? 'Edit Post' : 'Add New Post'}</h1>
-            <form className={"AddPostForm d-flex flex-column align-items-center justify-content-center"} onSubmit={onFormSubmit}>
-                <input
-                    className={"AddTitleForm-input col-10 mb-3 "}
-                    required
-                    type="text"
-                    name="title"
-                    value={postMutation.title}
-                    onChange={onFieldChange}
-                    placeholder="title"
-                />
-                <textarea
-                    className={"AddDescriptionForm-input col-10"}
-                    required
-                    name="description"
-                    value={postMutation.description}
-                    onChange={onFieldChange}
-                    placeholder="description"
-                />
-                <button className={"btn btn-primary d-flex col-2 justify-content-center mt-3 text-start"} type="submit" disabled={isLoading}>
-                    {id ? 'Save' : 'Add'}
-                </button>
-            </form>
+            <div className="NewPost border border-dark rounded p-3">
+                <h1>{id ? 'Edit Post' : 'Add New Post'}</h1>
+                <form className={"AddPostForm d-flex flex-column align-items-start justify-content-center"}
+                      onSubmit={onFormSubmit}>
+                    <label>Title</label>
+                    <input
+                        className={"AddTitleForm-input col-12 mb-3 "}
+                        required
+                        type="text"
+                        name="title"
+                        value={postMutation.title}
+                        onChange={onFieldChange}
+                        placeholder="title"
+                    />
+                    <label>Description</label>
+                    <textarea
+                        className={"AddDescriptionForm-input col-12"}
+                        required
+                        name="description"
+                        value={postMutation.description}
+                        onChange={onFieldChange}
+                        placeholder="description"
+                    />
+                    <button className={"btn btn-primary d-flex col-2 justify-content-center mt-3 text-start"}
+                            type="submit"
+                            disabled={isLoading}>
+                        {id ? 'Save' : 'Add'}
+                    </button>
+                </form>
+            </div>
         </>
     );
 };

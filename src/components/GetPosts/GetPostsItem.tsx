@@ -37,9 +37,10 @@ const GetPostsItem = () => {
     }
 
     return (
-        <div className="card mb-2 Post">
+        <div className="mb-2 Post border border-dark rounded p-3">
+            <h1>Posts</h1>
             {posts.map(post => (
-                <div key={post.id} className="row g-0 text-start p-3">
+                <div key={post.id} className="card row g-0 text-start p-3 mb-3">
                     <span className="Post-date">Created on: {new Date(post.datetime).toLocaleString()}</span>
                     <h3 className="Post-title">{post.title}</h3>
                     <Link to={`/posts/${post.id}`} className="btn btn-sm btn-primary w-25">Read more</Link>
